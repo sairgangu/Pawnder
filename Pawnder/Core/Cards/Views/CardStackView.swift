@@ -16,7 +16,7 @@ struct CardStackView: View {
             VStack(spacing: 20) {
                 ForEach(viewModel.cardModels) { card in
                         
-                    CardView(model: card, isDraggable: true)
+                    CardView(model: card, isDraggable: $isDraggable)
                 }
             }
             .scrollTargetBehavior(.paging)
