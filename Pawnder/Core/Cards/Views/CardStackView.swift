@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-
-struct CardStackView: View {
+ struct CardStackView: View {
     @StateObject var viewModel = CardsViewModel(service: CardService())
     @State private var isDraggable = true
     var body: some View {

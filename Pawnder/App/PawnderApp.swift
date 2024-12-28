@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct PawnderApp: App {
+    @StateObject var authManager = AuthManager(service: MockAuthService())
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            ContentView()
+                .environmentObject(authManager)
         }
     }
 }
