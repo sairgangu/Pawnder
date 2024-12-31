@@ -12,8 +12,7 @@ struct User: Identifiable {
     
     let id: String
     let name: String
-    var profileImageURL: String
-
+    var animals: [Animal]
     
     
     

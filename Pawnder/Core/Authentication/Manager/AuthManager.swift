@@ -7,6 +7,8 @@
 
 import Foundation
 
+import FirebaseAuth
+
 enum AuthType: Int, Identifiable {
     case createAccount
     case login
@@ -29,6 +31,10 @@ class AuthManager: ObservableObject {
     
     init(service: AuthServiceProtocol) {
         self.service = service
+        
+        if let currentUid = Auth.auth().currentUser?.uid {
+            self.authState = .authenticated(currentUid)
+        }
     }
     
     func authenticate(withEmail email: String, password: String) async {
@@ -46,5 +52,11 @@ class AuthManager: ObservableObject {
         } catch {
             print("DEBUG: fai;led to0 auth: \(error)")
         }
+    }
+    
+    func signOut()  {
+        authState = .unauthenticated
+        authType = nil
+        service.signOut()
     }
 }

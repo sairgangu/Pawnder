@@ -11,7 +11,7 @@ import Foundation
 struct MockData {
     
     static let users: [User] = [
-        .init(id: NSUUID().uuidString, name: "Bob", profileImageURL: "bob")
+        .init(id: NSUUID().uuidString, name: "Bob", animals: animals)
       
     ]
     

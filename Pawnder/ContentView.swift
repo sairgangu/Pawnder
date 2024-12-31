@@ -14,6 +14,7 @@ struct ContentView: View {
             switch authManager.authState {
             case .unauthenticated:
                 AuthenticationRootView()
+                    .environmentObject(AuthDataStore())
             case .authenticated:
                 MainTabView()
             }
