@@ -9,7 +9,10 @@ import SwiftUI
 
 struct EmailView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var email = ""
+    @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var authDataStore: AuthDataStore
+
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -18,9 +21,9 @@ struct EmailView: View {
                         .fontWeight(.bold)
                         .font(.title)
                     
-                    Text("Don't lose access to your account, add your email")
+                    Text(subtitle)
                     
-                    TextField("Enter email", text: $email)
+                    TextField("Enter email", text: $authDataStore.email)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                         .keyboardType(.emailAddress)
@@ -54,6 +57,19 @@ struct EmailView: View {
                     }
                 }
             }
+        }
+    }
+}
+
+private extension EmailView {
+    var subtitle: String {
+        guard let authType = authManager.authType else { return "" }
+        
+        switch authType {
+        case .createAccount:
+            return "Don't lose access to your account, add your email"
+        case .login:
+            return "Enter the email associated with your account to log back in"
         }
     }
 }

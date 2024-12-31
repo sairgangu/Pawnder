@@ -10,8 +10,9 @@ import SwiftUI
 struct PasswordView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var authManager: AuthManager
-    @State private var password = ""
-    @State private var email = "test@gmail.com"
+    @EnvironmentObject var authDataStore: AuthDataStore
+
+   
     var body: some View {
 
         
@@ -21,9 +22,9 @@ struct PasswordView: View {
                     .fontWeight(.bold)
                     .font(.title)
                 
-                Text("Don't lose access to your account, add your password")
+                Text(subtitle)
                 
-                SecureField("Enter email", text: $password)
+                SecureField("Enter email", text: $authDataStore.password)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .keyboardType(.emailAddress)
@@ -37,7 +38,7 @@ struct PasswordView: View {
             Spacer()
             
             Button {
-                Task { await authManager.authenticate(withEmail: email, password: password) }
+                Task { await authManager.authenticate(withEmail: authDataStore.email, password: authDataStore.password) }
             } label: {
                 Text("Next")
                     .foregroundStyle(.white)
@@ -60,6 +61,19 @@ struct PasswordView: View {
         }
 
         
+    }
+}
+
+private extension PasswordView {
+    var subtitle: String {
+        guard let authType = authManager.authType else { return "" }
+        
+        switch authType {
+        case .createAccount:
+            return "Don't lose access to your account, add your password"
+        case .login:
+            return "Enter the password associated with your account to log back in"
+        }
     }
 }
 

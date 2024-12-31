@@ -10,17 +10,13 @@ import SwiftUI
 
 
 struct CurrentUserProfileView: View {
+    @EnvironmentObject var authManager: AuthManager
     @State private var showAnimals = false
     @State private var showEditProfile = false
     let user: User
     var body: some View {
         NavigationStack{
             List {
-                // header view
-                CurrentUserProfileHeaderView(user: user)
-                    .onTapGesture {
-                        showEditProfile.toggle()
-                    }
                     
                 // account info
                 Section("Account Information") {
@@ -61,9 +57,7 @@ struct CurrentUserProfileView: View {
                 // logout/ delete
                 Section {
                     Button("Logout") {
-                        print("DEBUG: Logout here.....")
-                        
-                    }
+                        authManager.signOut()                    }
                 }
                 .foregroundStyle(.red)
                 Section {
