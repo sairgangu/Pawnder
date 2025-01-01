@@ -2,7 +2,6 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var isShowingSearch = false
-    let model: CardModel
     var body: some View {
         NavigationView {
             TabView {
@@ -21,7 +20,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
                 
-                CurrentUserProfileView(model: model, user: MockData.users[0], animal: MockData.animals[0])
+                CurrentUserProfileView(model: CardModel(animal: MockData.animals[0]), user: MockData.users[0], animal: MockData.animals[0])
                 .tabItem {
                     Image(systemName: "person")
       
@@ -54,5 +53,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    MainTabView(model: CardModel(animal: MockData.animals[1]))
+    MainTabView()
 }

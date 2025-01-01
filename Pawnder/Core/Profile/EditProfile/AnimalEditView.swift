@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AnimalEditView: View {
     @Environment(\.dismiss) var dismiss
-    
+    let model: CardModel
     @State private var name = ""
     @State private var age = ""
     @State private var weight = ""
@@ -30,7 +30,7 @@ struct AnimalEditView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                ProfileImageGridView(animal: animal)
+                ProfileImageGridView(animal: animal, model: model)
                     .padding()
                 
                 VStack(spacing: 24) {
@@ -162,5 +162,5 @@ struct AnimalEditView: View {
 }
 
 #Preview {
-    AnimalEditView(animal: MockData.animals[0])
+    AnimalEditView(model: CardModel(animal: MockData.animals[1]), animal: MockData.animals[0])
 }

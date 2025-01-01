@@ -48,7 +48,7 @@ struct YourAnimalView: View {
                     }
                                     }
                 .fullScreenCover(isPresented: $showAnimals) {
-                    AnimalEditView(animal: model.animal)
+                    AnimalEditView(model: model, animal: model.animal)
                 }
             }
             .navigationTitle("Edit Animal Profile")

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ProfileImageGridView: View {
     let animal: Animal
-    
+    let model: CardModel
     var body: some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(0 ..< 6) {index in
-                if index < animal.postedImageURLS.count {
-                    Image(animal.postedImageURLS[index])
+                if index < model.animal.postedImageURLS.count {
+                    Image(model.animal.postedImageURLS[index])
                         .resizable()
                         .scaledToFit()
                         .frame(width: 110, height: 160)
@@ -48,5 +48,5 @@ private extension ProfileImageGridView {
     }
 }
 #Preview {
-    ProfileImageGridView(animal: MockData.animals[0])
+    ProfileImageGridView(animal: MockData.animals[0], model: CardModel(animal: MockData.animals[1]))
 }
