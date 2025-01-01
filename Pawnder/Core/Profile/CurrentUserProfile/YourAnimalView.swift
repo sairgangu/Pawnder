@@ -19,6 +19,8 @@ struct YourAnimalView: View {
     @StateObject var viewModel = CardsViewModel(service: CardService())
     @Environment(\.dismiss) var dismiss
     @State private var isDraggable = true
+    let model: CardModel
+    let user: User
     var body: some View {
         
         NavigationStack {
@@ -31,9 +33,22 @@ struct YourAnimalView: View {
                                 showAnimals.toggle()
                             }
                     }
-                }
+                    if (user.animals.count < 6) {
+                        Button() {
+                            showAnimals.toggle()
+                        } label: {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .foregroundStyle(Color(.blue))
+                                .offset(x: 4, y: 4)
+                                .frame(width: 50, height: 50)
+
+                        }
+
+                    }
+                                    }
                 .fullScreenCover(isPresented: $showAnimals) {
-                    AnimalEditView()
+                    AnimalEditView(animal: model.animal)
                 }
             }
             .navigationTitle("Edit Animal Profile")
@@ -58,5 +73,5 @@ struct YourAnimalView: View {
 
 
 #Preview {
-    YourAnimalView()
+    YourAnimalView(model: CardModel(animal: MockData.animals[1]), user: MockData.users[0])
 }

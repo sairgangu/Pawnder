@@ -49,6 +49,8 @@ struct FullNameView: View {
             }
         }
         
+        .padding()
+        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {

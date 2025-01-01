@@ -12,8 +12,10 @@ import SwiftUI
 struct CurrentUserProfileView: View {
     @EnvironmentObject var authManager: AuthManager
     @State private var showAnimals = false
-    @State private var showEditProfile = false
+    let model: CardModel
+
     let user: User
+    let animal: Animal
     var body: some View {
         NavigationStack{
             List {
@@ -70,11 +72,9 @@ struct CurrentUserProfileView: View {
                 
                 
             }
-            .fullScreenCover(isPresented: $showEditProfile) {
-                EditProfileView()
-            }
+          
             .fullScreenCover(isPresented: $showAnimals) {
-                YourAnimalView()
+                YourAnimalView(model: model, user: user)
             }
             
         }
@@ -86,5 +86,5 @@ struct CurrentUserProfileView: View {
 
 
 #Preview {
-    CurrentUserProfileView(user: MockData.users[0])
+    CurrentUserProfileView(model: CardModel(animal: MockData.animals[1]), user: MockData.users[0], animal: MockData.animals[0])
 }

@@ -8,10 +8,11 @@
 import Foundation
 
 
-struct User: Identifiable {
+struct User: Identifiable, Codable, Hashable {
     
     let id: String
     let name: String
+//    let email: String
     var animals: [Animal]
     
     

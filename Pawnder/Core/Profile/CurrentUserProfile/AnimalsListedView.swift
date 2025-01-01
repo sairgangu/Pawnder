@@ -29,8 +29,8 @@ struct AnimalsListedView: View {
                     .fontWeight(.heavy)
                 
                 
-                    
-                    
+                
+                
             }
             .frame(width: SizeConstants.cardWidth, height: SizeConstants.cardHeight/6)
             .clipShape(RoundedRectangle(cornerRadius: 10))

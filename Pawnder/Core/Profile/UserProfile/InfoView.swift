@@ -8,7 +8,6 @@
 import SwiftUI
 struct InfoView: View {
     var animal: Animal
-    @StateObject var viewModel = CardsViewModel(service: CardService())
     var body: some View {
         ZStack(alignment: .top) {
             Image(animal.profileImageURL)

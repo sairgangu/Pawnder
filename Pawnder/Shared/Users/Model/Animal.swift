@@ -9,13 +9,17 @@
 import Foundation
 
 
-struct Animal: Identifiable {
+struct Animal: Identifiable, Codable, Hashable {
     
     let id: String
-    var name: String
-    var age: Int
-    var profileImageURL: String
-    var postedImageURLS: [String]
+    let name: String
+//    let breed: String
+    let age: Int
+//    let gender: String
+//    let weight: Int
+    let profileImageURL: String
+    let postedImageURLS: [String]
+//    let questionAnswers: [String]
     
     
     
